@@ -855,7 +855,8 @@ public class MainFrame extends javax.swing.JFrame {
         jToolBar_Quickmenu.add(jSeparator1);
 
         jButton_SetXYFrames.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uqmanimationtool/icons/applications-accessories.png"))); // NOI18N
-        jButton_SetXYFrames.setText("Set x/y for selected frames");
+        jButton_SetXYFrames.setMnemonic('X');
+        jButton_SetXYFrames.setText("Set x/y for selected frames (Alt+X)");
         jButton_SetXYFrames.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_SetXYFramesActionPerformed(evt);
@@ -941,7 +942,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         jSplitPane_vert.setRightComponent(jTabbedPane1);
 
-        jList_Frames.setFont(new java.awt.Font("Monospaced", 0, 13));
+        jList_Frames.setFont(new java.awt.Font("Monospaced", 0, 13)); // NOI18N
         jList_Frames.setDragEnabled(true);
         jList_Frames.setPreferredSize(null);
         jScrollPane1.setViewportView(jList_Frames);
@@ -967,7 +968,7 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane_vert, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
+            .addComponent(jSplitPane_vert)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1007,7 +1008,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 10));
+        jButton2.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uqmanimationtool/icons/go-up.png"))); // NOI18N
         jButton2.setText("Move up");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -1016,7 +1017,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 0, 10));
+        jButton3.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uqmanimationtool/icons/go-down.png"))); // NOI18N
         jButton3.setText("Move down");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -1033,8 +1034,6 @@ public class MainFrame extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-
-        jComboBox_AnimationType.setFont(new java.awt.Font("Tahoma", 0, 11));
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uqmanimationtool/icons/help-browser.png"))); // NOI18N
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -1111,7 +1110,7 @@ public class MainFrame extends javax.swing.JFrame {
                             .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 129, Short.MAX_VALUE)
+                            .addComponent(jButton6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
                             .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -1220,7 +1219,7 @@ public class MainFrame extends javax.swing.JFrame {
         jMenu_File.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uqmanimationtool/icons/system-file-manager.png"))); // NOI18N
         jMenu_File.setText("File");
 
-        jMenuItem_Open.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem_Open.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItem_Open.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uqmanimationtool/icons/document-open.png"))); // NOI18N
         jMenuItem_Open.setText("Open");
         jMenuItem_Open.addActionListener(new java.awt.event.ActionListener() {
@@ -1230,7 +1229,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
         jMenu_File.add(jMenuItem_Open);
 
-        jMenuItem_Reload.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem_Reload.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItem_Reload.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uqmanimationtool/icons/anitool-document-reload.png"))); // NOI18N
         jMenuItem_Reload.setText("Reload from disk");
         jMenuItem_Reload.addActionListener(new java.awt.event.ActionListener() {
@@ -1240,7 +1239,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
         jMenu_File.add(jMenuItem_Reload);
 
-        jMenuItem_Save.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem_Save.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItem_Save.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uqmanimationtool/icons/document-save.png"))); // NOI18N
         jMenuItem_Save.setText("Save");
         jMenuItem_Save.addActionListener(new java.awt.event.ActionListener() {

@@ -247,7 +247,8 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/uqmanimationtool/icons/applications-accessories.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Set x/y for selected frames"/>
+            <Property name="mnemonic" type="int" value="88"/>
+            <Property name="text" type="java.lang.String" value="Set x/y for selected frames (Alt+X)"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_SetXYFramesActionPerformed"/>
