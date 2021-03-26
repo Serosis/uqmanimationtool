@@ -387,6 +387,24 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     /**
+     * Get the currently selected Imagepanel
+     *
+     * @return the currently selected Imagepanel
+     */
+    private ImagePanel getPreviousImagePanel() {
+        if (jList_Frames.getSelectedIndex() == -1
+                || jList_Frames.getSelectedIndex() == 0) {
+            return null;
+        }
+
+        if (animationSystem.size() >= jList_Frames.getSelectedIndex()) {
+            return (ImagePanel) animationSystem.get(jList_Frames.getSelectedIndex() - 1);
+        } else {
+            return null;
+        }
+    }
+
+    /**
      * Save (write) the current state to a file
      * @param writefile The file to write to. If null, open a dialog to ask for a file, then save it.
      */
@@ -1459,7 +1477,8 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel_ImageWorkspaceMouseMoved
 
     private void jButton_SetXYFramesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SetXYFramesActionPerformed
-        String xandy = JOptionPane.showInputDialog("What should the new X and Y positions be for the selected frames (cancel to not change)?");        
+        String xandy = JOptionPane.showInputDialog("New X and Y positions be for "
+                + "the selected frame(s)\nInput two integers separated by a space");
         if (xandy != null && !xandy.equals("")) {
             try {
                 String[] parts = xandy.split(" ");
@@ -1490,6 +1509,9 @@ public class MainFrame extends javax.swing.JFrame {
                 + "UP/DOWN arrows: select the next/previous frame in the animation\n"
                 + "SPACE: loop through the animation once\n"
                 + "P: play the animation repeatedly\n"
+                + "Alt + X: Set the current frame(s) x/y coordinates (input two integers separated by a space)\n"
+                + "Alt + C: Use the previous frame's coordinates for the currently selected frame(s)\n"
+                + "\n"
                 + "\n"
                 + "Keyboard commands - Editing:\n"
                 + "W: Move the selected frame one pixel to the top\n"
@@ -1671,10 +1693,23 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton_SetXYasPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SetXYasPrevActionPerformed
-        String xandy = JOptionPane.showInputDialog("What should the new X and Y positions be for the selected frames (cancel to not change)?");        
-        if (xandy != null && !xandy.equals("")) {
+        ImagePanel ip = getPreviousImagePanel();
+
+        if (ip == null) {
+            return;
+        }
+
+        String xandy = Integer.toString(ip.xoff) + " " + Integer.toString(ip.yoff);
+
+        int result = JOptionPane.showConfirmDialog(null, "Use these coordinates "
+                + "for the selected frames?\n" + xandy, "", JOptionPane.YES_NO_OPTION);
+
+        if (result != 0) {
+            return;
+        }
+
+        if (xandy != null && !xandy.isEmpty()) {
             try {
-                // string n = Integer.valueOf(newx);
                 String[] parts = xandy.split(" ");
                 for (int i : jList_Frames.getSelectedIndices()) {
                     ImagePanel p = (ImagePanel) animationSystem.get(i);
@@ -1682,9 +1717,12 @@ public class MainFrame extends javax.swing.JFrame {
                     p.setYoff(Integer.valueOf(parts[1]));
                 }
             } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(this, "Please input two valid integers separated by a single space");
+                JOptionPane.showMessageDialog(this, "Invalid data.\nPlease "
+                        + "confirm x/y coordinates for the previous frame "
+                        + "are integers in a text editor and reload the .ani file");
             }
         }
+
         jList_Frames.updateUI();
     }//GEN-LAST:event_jButton_SetXYasPrevActionPerformed
 
