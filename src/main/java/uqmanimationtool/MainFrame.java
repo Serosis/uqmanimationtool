@@ -763,6 +763,7 @@ public class MainFrame extends javax.swing.JFrame {
         jButton_HotspotColor = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JToolBar.Separator();
         jButton_SetXYFrames = new javax.swing.JButton();
+        jButton_SetXYasPrev = new javax.swing.JButton();
         jSplitPane_horiz = new javax.swing.JSplitPane();
         jPanel2 = new javax.swing.JPanel();
         jSplitPane_vert = new javax.swing.JSplitPane();
@@ -863,6 +864,18 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         jToolBar_Quickmenu.add(jButton_SetXYFrames);
+
+        jButton_SetXYasPrev.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uqmanimationtool/icons/list-add.png"))); // NOI18N
+        jButton_SetXYasPrev.setMnemonic('C');
+        jButton_SetXYasPrev.setText("Set x/y same as prev. frame (Alt+C)");
+        jButton_SetXYasPrev.setToolTipText("");
+        jButton_SetXYasPrev.setDisplayedMnemonicIndex(4);
+        jButton_SetXYasPrev.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_SetXYasPrevActionPerformed(evt);
+            }
+        });
+        jToolBar_Quickmenu.add(jButton_SetXYasPrev);
 
         jSplitPane_horiz.setPreferredSize(new java.awt.Dimension(364, 597));
 
@@ -1249,7 +1262,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
         jMenu_File.add(jMenuItem_Save);
 
-        jMenuItem_SaveAs.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F6, 0));
+        jMenuItem_SaveAs.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItem_SaveAs.setIcon(new javax.swing.ImageIcon(getClass().getResource("/uqmanimationtool/icons/document-save-as.png"))); // NOI18N
         jMenuItem_SaveAs.setText("Save as");
         jMenuItem_SaveAs.addActionListener(new java.awt.event.ActionListener() {
@@ -1446,33 +1459,22 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel_ImageWorkspaceMouseMoved
 
     private void jButton_SetXYFramesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SetXYFramesActionPerformed
-        String newx = JOptionPane.showInputDialog("What should the new X position be for ALL frames (cancel to not change)?");
-        String newy = JOptionPane.showInputDialog("What should the new Y position be for ALL frames (cancel to not change)?");
-        if (newx != null && !newx.equals("")) {
+        String xandy = JOptionPane.showInputDialog("What should the new X and Y positions be for the selected frames (cancel to not change)?");        
+        if (xandy != null && !xandy.equals("")) {
             try {
-                int n = Integer.valueOf(newx);
+                String[] parts = xandy.split(" ");
                 for (int i : jList_Frames.getSelectedIndices()) {
                     ImagePanel p = (ImagePanel) animationSystem.get(i);
-                    p.setXoff(n);
+                    p.setXoff(Integer.valueOf(parts[0]));
+                    p.setYoff(Integer.valueOf(parts[1]));
                 }
             } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(this, "Please input a valid integer");
-            }
-        }
-        if (newy != null && !newy.equals("")) {
-            try {
-                int n = Integer.valueOf(newy);
-                for (int i : jList_Frames.getSelectedIndices()) {
-                    ImagePanel p = (ImagePanel) animationSystem.get(i);
-                    p.setYoff(n);
-                }
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(this, "Please input a valid integer");
+                JOptionPane.showMessageDialog(this, "Please input two valid integers separated by a single space");
             }
         }
         jList_Frames.updateUI();
     }//GEN-LAST:event_jButton_SetXYFramesActionPerformed
-
+   
     private void jMenuItem_SaveAsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_SaveAsActionPerformed
         saveFile(null);
     }//GEN-LAST:event_jMenuItem_SaveAsActionPerformed
@@ -1668,6 +1670,24 @@ public class MainFrame extends javax.swing.JFrame {
         td.setVisible(true);
     }//GEN-LAST:event_jButton11ActionPerformed
 
+    private void jButton_SetXYasPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SetXYasPrevActionPerformed
+        String xandy = JOptionPane.showInputDialog("What should the new X and Y positions be for the selected frames (cancel to not change)?");        
+        if (xandy != null && !xandy.equals("")) {
+            try {
+                // string n = Integer.valueOf(newx);
+                String[] parts = xandy.split(" ");
+                for (int i : jList_Frames.getSelectedIndices()) {
+                    ImagePanel p = (ImagePanel) animationSystem.get(i);
+                    p.setXoff(Integer.valueOf(parts[0]));
+                    p.setYoff(Integer.valueOf(parts[1]));
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Please input two valid integers separated by a single space");
+            }
+        }
+        jList_Frames.updateUI();
+    }//GEN-LAST:event_jButton_SetXYasPrevActionPerformed
+
     private void moveAnimationFrame(int delta) {
         Animation a = (Animation) animationSystem.animationListModel.getSelectedItem();
         int indexold = jTable1.getSelectedRow();
@@ -1719,6 +1739,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton_Openfile;
     private javax.swing.JButton jButton_Savefile;
     private javax.swing.JButton jButton_SetXYFrames;
+    private javax.swing.JButton jButton_SetXYasPrev;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem_HighlightFrame;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem_ShowHotspot;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem_ShowSelectedFrameOnly;

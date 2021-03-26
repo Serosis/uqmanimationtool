@@ -57,7 +57,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem_SaveAs">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="F6"/>
+                  <KeyStroke key="Shift+Ctrl+S"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/uqmanimationtool/icons/document-save-as.png"/>
@@ -252,6 +252,20 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_SetXYFramesActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton_SetXYasPrev">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/uqmanimationtool/icons/list-add.png"/>
+            </Property>
+            <Property name="mnemonic" type="int" value="67"/>
+            <Property name="text" type="java.lang.String" value="Set x/y same as prev. frame (Alt+C)"/>
+            <Property name="toolTipText" type="java.lang.String" value=""/>
+            <Property name="displayedMnemonicIndex" type="int" value="4"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_SetXYasPrevActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
